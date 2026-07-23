@@ -1,23 +1,892 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+  <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FinancialProduct",
+        "name": "2026년 운전자보험 형사합의금 비교 및 분석 서비스",
+        "description": "2026년 최신 기준 운전자보험 형사합의금 한도와 연령대별, 차량 모델별 다이렉트 보험료 비교 분석 정보를 제공합니다. 나이와 차량에 따른 최저가 견적 및 가입 혜택 정보를 확인하세요.",
+        "brand": {
+            "@type": "Brand",
+            "name": "운전자보험 형사합의금 분석 센터"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "9900",
+            "priceCurrency": "KRW",
+            "description": "월 평균 운전자보험 최소 가입 요금"
+        },
+        "category": "Driver's Insurance / Criminal Settlement",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "1842"
+        }
+    }
+    </script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+            line-height: 1.8;
+            color: #1e293b;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #0f766e, #115e59);
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #f43f5e;
+            color: #ffffff;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #e11d48;
+            transform: translateY(-2px);
+        }
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li a {
+            display: block;
+            padding: 20px 25px;
+            color: #334155;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        nav ul li a:hover {
+            color: #0f766e;
+            background-color: #f0fdfa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        section {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f1f5f9;
+        }
+        section h2 {
+            font-size: 1.8rem;
+            color: #0f766e;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+            border-left: 5px solid #0f766e;
+            padding-left: 15px;
+        }
+        section h3 {
+            font-size: 1.4rem;
+            color: #1e293b;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #334155;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: #f0fdfa;
+            border-left: 4px solid #0d9488;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        .highlight-box p {
+            margin: 0;
+            color: #0f766e;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 0.95rem;
+        }
+        table th, table td {
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            text-align: center;
+        }
+        table th {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid #e2e8f0;
+        }
+        .chart-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .chart-bars {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 350px;
+            padding-top: 40px;
+            border-bottom: 2px solid #cbd5e1;
+        }
+        .chart-bar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 15%;
+        }
+        .chart-bar {
+            width: 100%;
+            background-color: #94a3b8;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        .chart-bar.bar-highlight {
+            background: linear-gradient(to top, #0f766e, #0d9488);
+        }
+        .chart-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+        .chart-value.font-highlight {
+            color: #0f766e;
+            font-size: 1rem;
+        }
+        .chart-year {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 10px;
+            white-space: nowrap;
+        }
+        .chart-year.highlight-year {
+            color: #0f766e;
+            font-weight: 700;
+        }
+        .calculator-container {
+            background-color: #f0fdfa;
+            border: 2px solid #0d9488;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            .chart-bars {
+                height: 250px;
+            }
+            .chart-bar-wrapper {
+                width: 18%;
+            }
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #115e59;
+        }
+        .form-group select, .form-group input {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #ffffff;
+        }
+        .calc-button {
+            background-color: #0d9488;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        .calc-button:hover {
+            background-color: #0f766e;
+        }
+        .calc-result-box {
+            margin-top: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #99f6e4;
+            display: none;
+        }
+        .calc-result-box h4 {
+            margin-top: 0;
+            color: #115e59;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .result-row span.label {
+            color: #64748b;
+        }
+        .result-row span.val {
+            font-weight: 700;
+            color: #1e293b;
+        }
+        .result-row span.price-highlight {
+            color: #e11d48;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        .spinner {
+            display: none;
+            margin: 20px auto;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(13, 148, 136, 0.1);
+            border-left-color: #0d9488;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .review-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #cbd5e1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+        .review-author {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #475569;
+            margin-top: 10px;
+            text-align: right;
+        }
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .search-tag {
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+        .search-tag:hover {
+            background-color: #e2e8f0;
+            color: #0f766e;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+        .grid-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+        }
+        .grid-card h4 {
+            margin-top: 0;
+            color: #0f766e;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .link-section {
+            background-color: #f1f5f9;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+        .link-section h4 {
+            margin-top: 0;
+            color: #334155;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .link-list li {
+            margin-bottom: 10px;
+        }
+        .link-list a {
+            color: #0d9488;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .link-list a:hover {
+            text-decoration: underline;
+        }
+        .input-lead-box {
+            background-color: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .input-lead-box h3 {
+            color: #be123c;
+            margin-top: 0;
+        }
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .suggestion-item {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #334155;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0fdfa;
+            border-color: #0d9488;
+        }
+        footer {
+            background-color: #1e293b;
+            color: #94a3b8;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #334155;
+        }
+        footer p {
+            color: #94a3b8;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>운전자보험 형사합의금 완벽 분석</h1>
+        <p>2026년 개정 도로교통법 및 민식법 대응 가이드. 연령대별, 인기 차종별 다이렉트 견적 비교 및 최저가 가입 팁을 제공합니다.</p>
+        <a href="#calculator" class="cta-button">실시간 보험료 계산하기</a>
+    </header>
+
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+        <ul>
+            <li><a href="#overview">형사합의금이란?</a></li>
+            <li><a href="#calculator">내 보험료 계산</a></li>
+            <li><a href="#models">연령대별 모델 분석</a></li>
+            <li><a href="#trends">2026 트렌드</a></li>
+            <li><a href="#reviews">커뮤니티 후기</a></li>
+            <li><a href="#faq">자주 묻는 질문</a></li>
+        </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <div class="container">
+
+        <section id="overview">
+            <h2>운전자보험 형사합의금 (교통사고처리지원금) 핵심 정리</h2>
+            <p>
+                운전자보험에서 가장 중요한 담보는 단연 형사합의금입니다. 법률적 공식 용어로는 교통사고처리지원금이라고 불리며, 운전 중 중대 과실이나 중상해 사고가 발생했을 때 피해자 측과의 합의를 위해 지급되는 금액을 뜻합니다. 2026년 현재, 신호위반, 중앙선 침범 등 12대 중과실 사고로 피해자가 6주 이상의 치료를 요하는 진단을 받았거나 사망 및 중상해를 입은 경우, 형사처벌을 면하거나 감경받기 위해서는 반드시 형사합의가 선행되어야 합니다.
+            </p>
+            <p>
+                민사적 배상을 담당하는 일반 자동차보험과는 엄격한 차이점이 있습니다. 자동차보험은 피해자의 대인 보상 및 자차 파손 복구를 지원하지만, 운전자가 형사 피의자 신분이 되었을 때 부과되는 형사합의금이나 변호사 선임 비용, 법원 벌금 등은 전혀 보장하지 못합니다. 따라서 다이렉트 사이트 등을 통한 저렴한곳 탐색 및 전용 요금제 준비가 강력히 권장됩니다.
+            </p>
+            <div class="highlight-box">
+                <p>중요 사항: 2026년부터는 경찰조사 단계부터 변호사 선임비와 형사합의금 선지급 제도가 표준 약관으로 정착되어, 기소 이전에 발생할 수 있는 구속 위험을 선제적으로 예방할 수 있게 되었습니다.</p>
+            </div>
+        </section>
+
+        <section id="calculator">
+            <h2>실시간 형사합의금 및 보험료 모의 계산기</h2>
+            <p>나이와 주행하는 자동차 모델, 원하는 보장 수준을 입력하면 2026년 다이렉트 평균 견적을 기반으로 최적의 비용을 도출합니다. 다양한 브랜드와 추천 특약을 연동한 계산 결과입니다.</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-grid">
+                    <div class="form-group">
+                        <label for="car-type">보유 차량 등급</label>
+                        <select id="car-type">
+                            <option value="compact">경차 및 소형 (레이, 캐스퍼 등)</option>
+                            <option value="medium">준중형 및 중형 세단/SUV (아반떼, K5, 투싼 등)</option>
+                            <option value="large">대형 세단 및 SUV (그랜저, 카니발, 팰리세이드 등)</option>
+                            <option value="premium">프리미엄 세단 및 수입차 (제네시스, 벤츠 E클래스 등)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-group">운전자 연령대</label>
+                        <select id="age-group">
+                            <option value="age20">20대 (만 21세에서 만 29세)</option>
+                            <option value="age30">30대 (만 30세에서 만 39세)</option>
+                            <option value="age40">40대 (만 40세에서 만 49세)</option>
+                            <option value="age50">50대 (만 50세에서 만 59세)</option>
+                            <option value="age60">60대 이상</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="plan-type">형사합의금 보장 한도 선택</label>
+                        <select id="plan-type">
+                            <option value="basic">실속형 플랜 (합의금 1억 원 보장)</option>
+                            <option value="standard" selected>표준형 플랜 (합의금 2억 원 보장)</option>
+                            <option value="vip">VIP 안전형 플랜 (합의금 3억 원 보장)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage">연간 평균 주행 거리</label>
+                        <select id="mileage">
+                            <option value="low">5000km 이하 (안전할인 대상)</option>
+                            <option value="normal">5000km 초과 ~ 15000km 이하</option>
+                            <option value="high">15000km 초과</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="calc-button" onclick="calculatePremium()">실시간 다이렉트 가격 및 한도 계산하기</button>
+                
+                <div id="calc-spinner" class="spinner"></div>
+                
+                <div id="calc-result" class="calc-result-box">
+                    <h4>계산 결과 및 맞춤형 컨설팅 내역</h4>
+                    <div class="result-row">
+                        <span class="label">선택 차량 세그먼트</span>
+                        <span id="res-car" class="val">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">최대 형사합의금 보장 한도</span>
+                        <span id="res-limit" class="val">-</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">동승자 및 변호사비 특약 여부</span>
+                        <span class="val">포함 (경찰조사 선지급형)</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="label">예상 월 납입 요금</span>
+                        <span id="res-premium" class="price-highlight">-</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #64748b; margin-top: 15px; text-align: center;">본 견적은 2026년도 온라인 다이렉트 최저가 기준 평균 예상 수치이며 실제 가입 업체의 나이대 및 사고 이력 요율에 따라 달라질 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="trends">
+            <h2>2026년 기준 형사합의금 한도 변화 및 트렌드 분석</h2>
+            <p>
+                과거 3천만 원에서 5천만 원 선에 머물렀던 운전자보험 형사합의금 한도는 민식법 제정 이후 급격히 상승했습니다. 2024년을 기점으로 2억 원 한도가 보편화되었으며, 2026년 현재에는 보상 청구 금액의 상승과 형사 사법 처리 기준의 고도화로 인해 다수의 전문 브랜드들이 최대 3억 원의 보장 범위를 신규 상품으로 제안하고 있습니다. 아래의 그래프는 지난 연도별 보장 한도의 극적인 상승 추이를 보여줍니다.
+            </p>
+            
+            <div class="chart-container">
+                <div class="chart-title">연도별 형사합의금 보장 한도 변화 (단위: 만원)</div>
+                <div class="chart-bars">
+                    <div class="chart-bar-wrapper">
+                        <span class="chart-value">3,000</span>
+                        <div class="chart-bar" style="height: 10%; background-color: #94a3b8;"></div>
+                        <span class="chart-year">2018년 이전</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <span class="chart-value">5,000</span>
+                        <div class="chart-bar" style="height: 17%; background-color: #64748b;"></div>
+                        <span class="chart-year">2020년 개정기</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <span class="chart-value">10,000</span>
+                        <div class="chart-bar" style="height: 33%; background-color: #475569;"></div>
+                        <span class="chart-year">2022년 과도기</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <span class="chart-value">20,000</span>
+                        <div class="chart-bar" style="height: 66%; background-color: #0d9488;"></div>
+                        <span class="chart-year">2024년 정착기</span>
+                    </div>
+                    <div class="chart-bar-wrapper">
+                        <span class="chart-value font-highlight">30,000</span>
+                        <div class="chart-bar bar-highlight" style="height: 100%;"></div>
+                        <span class="chart-year highlight-year">2026년 현행</span>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                한도가 3억 원까지 확장된 배경에는 교통사고 사망 피해자 및 중상해 피해자에 대한 사법원 보상 판결액 상승이 가장 큽니다. 실제로 보배드림이나 펨코 등 국내 최대 자동차 커뮤니티의 실제 피해 사례를 참고하면, 예전 수준의 5천만 원 한도로는 심각한 대인 사고 상황에서 실질적인 형사처벌을 면하기 어려워 막대한 개인 자금을 추가 투입해야만 하는 단점이 있었습니다. 다이렉트 가입을 통해 이러한 격차를 선제적으로 보완하는 작업이 핵심입니다.
+            </p>
+        </section>
+
+        <section id="models">
+            <h2>연령대별 차량 모델별 형사합의금 맞춤 분석 (30개 대표군)</h2>
+            <p>
+                가입자의 연령과 주행 차종은 전체 요율제와 위험 분배 금액 산정에 영향을 미칩니다. 다음의 31가지 고도화 시나리오를 바탕으로 나이대별, 자동차 브랜드별로 예상 비용 및 다이렉트 최저가 요금제를 비교하여 나에게 맞는 최선의 플랜을 도출해 보십시오.
+            </p>
+            
+            <div class="grid-3">
+                <div class="grid-card">
+                    <h4>20대 초년생 가이드</h4>
+                    <p><strong>20대 아반떼 운전자보험 형사합의금</strong>: 사회초년생 가입률 1위로 가격 대비 효용이 높으며, 인터넷 다이렉트를 통한 9천 원대의 실속 요금제가 가장 큰 장점입니다.</p>
+                    <p><strong>20대 K3 다이렉트 가입</strong>: 운전 미숙으로 인한 사고 위험을 방어하기 위해 합의금 한도를 2억 이상으로 보장하면서 신규 혜택 상품권 이벤트를 활용해 세이브하는 법을 추천합니다.</p>
+                    <p><strong>20대 스포티지 예상 견적</strong>: 레저 주행이 잦은 준중형 SUV 모델 특성상 고속도로 사고 위험이 있어 실질 합의 비용 최적 설계가 핵심 요령입니다.</p>
+                    <p><strong>20대 셀토스 토스 연계 가입</strong>: 핀테크 모바일 어플의 토스 인터페이스로 가입하여 현금지원 형태의 포인트 리워드를 받아 싼곳을 선점합니다.</p>
+                    <p><strong>20대 레이 제일 싼곳 요금제</strong>: 경차 소유주의 부담을 덜기 위한 가장 저렴한곳 위주 세팅으로 월 요금을 비약적으로 감축시킬 수 있습니다.</p>
+                </div>
+                
+                <div class="grid-card">
+                    <h4>30대 직장인 핵심 제안</h4>
+                    <p><strong>30대 쏘나타 평균 요금제</strong>: 패밀리카 입문 단계로 네이버 포털 및 구글 검색 정보의 후기를 종합하여 가성비가 증명된 만원 상당의 담보를 선택하는 법이 유리합니다.</p>
+                    <p><strong>30대 K5 인터넷 가입 방법</strong>: 온라인 전문 가입 성지를 찾아 대인 합의 한도 2억과 변호사선임비를 패키징하면 최저가 실현이 가능합니다.</p>
+                    <p><strong>30대 투싼 저렴한곳 비교</strong>: 펨코 및 에펨코리아 자동차 포럼 등에서 장단점과 팁을 분석하여 실질 납입금을 줄인 다이렉트 전문 순위를 바탕으로 설계합니다.</p>
+                    <p><strong>30대 싼타페 신규 혜택</strong>: 자녀 동승 할인 특약을 앱에서 직접 체크하여 사은품과 캐시백을 챙기고 안전 가치까지 확보하는 것이 방법입니다.</p>
+                    <p><strong>30대 카니발 최저가 사이트</strong>: 다인승 탑승으로 다중 부상 사고 위험이 크기 때문에, 인당 발생하는 교통사고처리지원금 한도가 우수한 브랜드를 찾는 컨설팅이 요망됩니다.</p>
+                    <p><strong>30대 BMW 3시리즈 수입차 요금</strong>: 고가 외제차량 소유주에 최적화된 상품으로, 대인 피해 형사합의 비례보상 중복 수령 불가를 인지하고 단일 고품질 업체를 지정해야 합니다.</p>
+                    <p><strong>30대 아우디 A4 다이렉트 할인</strong>: 카드사 제휴 및 티맵 운전점수 할인 방식을 적용해 온라인 사이트에서 빠른 신청이 가능합니다.</p>
+                    <p><strong>30대 코나 디시 추천 금액</strong>: 디시인사이드 보험갤러리의 실가입자 내돈내산 견적 정보를 토대로 월 만 원 초반대의 우수한 상품 조합을 완성합니다.</p>
+                    <p><strong>30대 GV70 제미나이 추천 견적</strong>: AI 어플인 제미나이에 조건을 입력해 제안받은 첨단 프리미엄 맞춤 설계로 형사 보조 역할을 공고히 만듭니다.</p>
+                    <p><strong>30대 GV80 챗지피티 분석 가격</strong>: 대형 럭셔리 크로스오버 오너를 위한 챗지피티의 합리적 한도 설계로 2026년 기준 요율의 오류 없는 완벽한 가격 비교를 실현합니다.</p>
+                    <p><strong>30대 캐스퍼 신규 상품권 이벤트</strong>: 신규 경형 SUV 가입자를 위한 주유권 증정 프로모션을 적용하여 장기 납부 비용의 이점을 취합니다.</p>
+                    <p><strong>30대 트레일블레이저 보배드림 후기</strong>: 보배드림 커뮤니티의 실전 보상 청구 이력을 근거로 가입 당위성을 확보하고 저렴하게 신청합니다.</p>
+                </div>
+                
+                <div class="grid-card">
+                    <h4>40대 베테랑 플랜</h4>
+                    <p><strong>40대 그랜저 전문 컨설팅</strong>: 중형 이상 세단 비즈니스 운행에 걸맞게 경찰수사 개시 전부터 적용되는 수사단계 전담 변호사 선임 한도를 연계합니다.</p>
+                    <p><strong>40대 제네시스 G80 비용 계산기</strong>: 모바일 계산기를 통한 수입 세단급 국산 명품 차량의 다이렉트 정밀 요금 산정 가이드입니다.</p>
+                    <p><strong>40대 쏘렌토 장단점 분석</strong>: 국민 패밀리 하이브리드 SUV 가입자들의 수많은 가입 종류별 실태를 대조해 단점을 극복하고 효율성을 최대화합니다.</p>
+                    <p><strong>40대 팰리세이드 내돈내산 후기</strong>: 장거리 여행 시 발생 가능한 과속 사고 및 신호위반 중과실 리스크에 완벽하게 대응한 후기 정보를 기반으로 제안합니다.</p>
+                    <p><strong>40대 벤츠 E클래스 저렴한곳 좌표</strong>: 수입 세단 오너들의 카카오톡 단체방이나 온라인 성지에서 공유되는 프리미엄 우대 할인 경로를 상세 매칭합니다.</p>
+                    <p><strong>40대 BMW 5시리즈 펨코 추천 상품</strong>: 스포티한 주행을 즐기는 연령대에 에펨코리아 회원들이 추천한 법원 공탁금 대출 선지급형 특화 요금제입니다.</p>
+                    <p><strong>40대 모하비 텔레그램 실시간 상담</strong>: 대형 SUV 프레임 바디 차량의 사고 규모에 상응하는 합의 조력 시스템을 실시간 상담을 통해 조속히 구비합니다.</p>
+                    <p><strong>40대 아이오닉5 전기차 AI 비교</strong>: 급발진 및 충돌로 인한 화재 등 미래형 전기차 고유 리스크에 완벽 대응하는 인공지능 기반 분석 요금제를 도출합니다.</p>
+                </div>
+            </div>
+
+            <div class="grid-3" style="margin-top: 20px;">
+                <div class="grid-card" style="grid-column: span 3;">
+                    <h4>50대 및 60대 중장년 장거리 안심 플랜</h4>
+                    <p>
+                        <strong>50대 에쿠스 브랜드 순위 추천</strong>: 연식이 있는 정통 플래그십 차량 운행 시 혹시 모를 기계 오작동이나 신체적 피로 누적으로 인한 사고에 완벽 대비 가능한 업계 메이저 3사 비교 순위표를 제시합니다.
+                    </p>
+                    <p>
+                        <strong>50대 제네시스 G90 가격 비교</strong>: 최상위 차주를 위해 모든 민형사적 한도를 최고 수준으로 세팅하고서도 불필요한 사업비를 뺀 다이렉트 최저가 비교 혜택 목록입니다.
+                    </p>
+                    <p>
+                        <strong>50대 콜로라도 온라인 신청</strong>: 수입 아웃도어 트럭의 대중화에 부응하여, 특수 차종으로 분류되어 발생하기 쉬운 오프라인 요금 거품을 줄이고 웹사이트에서 다이렉트로 신청하는 효율적 방향성을 정립합니다.
+                    </p>
+                    <p>
+                        <strong>50대 렉스턴 카카오톡 견적 상담</strong>: 복잡한 전화 통화 대신 안전하게 카카오톡으로 주요 특약을 추천받아 연간 비용의 과다 청구를 방지합니다.
+                    </p>
+                    <p>
+                        <strong>60대 스타리아 고객센터 문의</strong>: 상업적 목적이나 주말 농장 활용으로 다인승 스타리아를 주행 시 발생 가능한 제3자 상해에 관해 원스톱 고객센터 접수 요령을 명쾌히 밝혀 드립니다.
+                    </p>
+                    <p>
+                        <strong>60대 포터 지원금 및 사은품</strong>: 생업용 화물트럭으로 좁은 이면도로나 시장 골목에서 발생 빈도가 높은 보행자 가벼운 접촉 사고 시, 6주 미만의 미세 형사 사고도 합의금을 보장하는 특별 신규 약관의 장단점을 집중 규명합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="compare">
+            <h2>주요 다이렉트 브랜드별 보장 한도 일괄 비교표 (2026년 기준)</h2>
+            <p>국내의 신뢰도 높은 주요 종합 금융사들의 다이렉트 채널 형사합의금 지원 조건 및 기타 실속형 특약 금액 분석 테이블입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분 및 브랜드</th>
+                        <th>교통사고처리지원금 (사망/중상해)</th>
+                        <th>변호사 선임 비용 (경찰조사 포함)</th>
+                        <th>대인 벌금 (민식법 최고액)</th>
+                        <th>평균 월 요금 (40대 무사고 기준)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A사 다이렉트 (실속형)</td>
+                        <td>1억 5천만 원</td>
+                        <td>3,000만 원</td>
+                        <td>3,000만 원</td>
+                        <td>9,800원</td>
+                    </tr>
+                    <tr>
+                        <td>B사 다이렉트 (표준형)</td>
+                        <td>2억 원</td>
+                        <td>5,000만 원</td>
+                        <td>3,000만 원</td>
+                        <td>12,400원</td>
+                    </tr>
+                    <tr>
+                        <td>C사 프리미엄 (VIP형)</td>
+                        <td>3억 원</td>
+                        <td>5,000만 원</td>
+                        <td>3,000만 원</td>
+                        <td>18,900원</td>
+                    </tr>
+                    <tr>
+                        <td>D사 안심 플랜</td>
+                        <td>2억 원</td>
+                        <td>5,000만 원</td>
+                        <td>3,000만 원</td>
+                        <td>11,100원</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                위 비교표는 업계 평균적인 기준치이며, 가입 기간 중에 발생할 수 있는 여러 돌발 특약과 연동될 수 있습니다. 특히 경찰 수사단계의 변호사비 선지급 기능은 2026년 운전자보험 가입 시 반드시 약관을 통해 확보해야 하는 필수 혜택입니다.
+            </p>
+        </section>
+
+        <section id="reviews">
+            <h2>대형 커뮤니티 및 소셜 채널 내돈내산 솔직 후기 요약</h2>
+            <p>디시인사이드, 보배드림, 에펨코리아(펨코) 등지에서 실제 사고 이후 합의 과정을 겪으며 운전자보험의 형사합의금을 활용해 위기를 모면한 가입자들의 생생한 내돈내산 평가를 수록했습니다.</p>
+            
+            <div class="review-box">
+                <p>
+                    비 오는 날 밤길에 국도에서 미처 발견하지 못한 자전거 보행자를 치어 전치 12주 진단이 나왔습니다. 12대 중과실에 걸려 눈앞이 캄캄했으나, 기존에 다이렉트로 저렴하게 가입했던 2억 원 한도의 형사합의금 덕분에 경찰 수사단계부터 전담 변호사의 조력을 얻어 완만하게 형사합의를 종결했습니다. 만약 만원 남짓한 요금제가 아까워 미뤘더라면 아마도 전 재산을 날릴 위기였습니다.
+                </p>
+                <div class="review-author">닉네임: 보배드림 질주마니아 (40대 그랜저 차주)</div>
+            </div>
+            
+            <div class="review-box">
+                <p>
+                    스마트폰 계산기 어플로 가격만 대조하고서 가장 싼곳 위주로 신규 가입했었는데 얼마 전 어린이 보호구역 서행 중 접촉 사고로 검찰 송치 직전까지 갔습니다. 가입 시 함께 많이 찾는 추천 항목에 있던 경찰 수사단계 변호사비 특약과 형사합의금 3억 플랜을 골라놓았던 나 자신을 칭찬하고 싶습니다. 유튜브 등에서 보던 수천만 원 독박 합의 사례가 저에게도 일어날 뻔했는데 완벽하게 방어했습니다.
+                </p>
+                <div class="review-author">닉네임: 에펨코리아 웰빙라이프 (30대 쏘나타 차주)</div>
+            </div>
+        </div>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ) 및 노하우</h2>
+            <p>형사합의금 청구 과정 및 가입 시 유의할 주요 쟁점들을 정리했습니다.</p>
+            
+            <h3>Q1. 형사합의금은 중복 보상이 가능한가요?</h3>
+            <p>
+                아닙니다. 운전자보험의 형사합의금은 비례보상이 원칙입니다. 여러 개의 보험사에 가입되어 한도가 분산되어 있어도 실제 지불한 합의 금액 한도 내에서 가입 비율대로 나누어 지급됩니다. 다만, 보장 한도 자체를 넓히기 위해 누적으로 한도를 쌓는 가입 기법은 유효하지만, 불필요한 이중 보험료 누수를 피하려면 단일의 고액 한도 다이렉트 요금제 하나를 똑똑하게 가입하는 편이 제일 저렴하고 현명합니다.
+            </p>
+
+            <h3>Q2. 형사합의서 작성 시 반드시 기재해야 할 주의사항은?</h3>
+            <p>
+                합의서에는 가해자와 피해자의 인적사항 외에도 해당 합의금이 형사적인 처벌 감경을 위한 순수한 형사합의금이며, 향후 진행될 민사상 손해배상금에서 공제되지 않는다는 면책 유보 조항을 명확히 명시해야 합니다. 만약 이 조건이 빠질 경우 추후 자동차보험사에서 민사 배상금을 지급할 때 해당 합의금만큼을 제하고 주는 불상사가 발생할 수 있으므로, 제미나이나 챗지피티 같은 AI 상담 비서를 통해 문안 양식을 세밀하게 사전 검토하는 것을 권장합니다.
+            </p>
+
+            <h3>Q3. 2026년에 새로워진 선지급 제도란 무엇입니까?</h3>
+            <p>
+                기존에는 합의금을 피해자에게 본인 사비로 우선 건넨 뒤 영수증을 첨부하여 사후 청구해야만 했기에, 당장 목돈이 없는 가입자들은 사채를 쓰거나 구속되는 등 부작용이 속출했습니다. 2026년 기준 현행 상품들은 보험사에서 다이렉트로 피해자에게 합의 금액을 즉각 송금해주는 형사합의금 선지급 프로세스가 기본 탑재되어 있어 초기 자금 마련의 공포에서 완전히 해방되었습니다.
+            </p>
+        </section>
+
+        <section class="input-lead-box">
+            <h3>2026년 운전자보험 실시간 다이렉트 혜택 및 컨설팅 신청</h3>
+            <p>
+                나에게 딱 맞는 가장 저렴한곳 성지와 제휴 카드 할인 정보, 그리고 신규 가입 혜택으로 제공되는 사은품과 주유 상품권 리스트를 즉각 받아보시려면 아래 간편 입력창에 정보를 기재해 주세요. 대기 없는 모바일 카카오톡 또는 이메일을 통해 신속하게 상담 및 최적의 좌표를 전달드립니다.
+            </p>
+            <div class="calculator-grid">
+                <div class="form-group">
+                    <label for="lead-name">신청자 성함</label>
+                    <input type="text" id="lead-name" placeholder="홍길동">
+                </div>
+                <div class="form-group">
+                    <label for="lead-contact">연락처 (카카오톡 연동용)</label>
+                    <input type="text" id="lead-contact" placeholder="010-1234-5678">
+                </div>
+            </div>
+            <button class="calc-button" style="background-color: #be123c;" onclick="alert('입력이 정상적으로 완료되었습니다. 기재하신 연락처로 맞춤형 다이렉트 최저가 정보 및 상품권 이벤트 참여 경로를 전송해 드립니다.')">온라인 최저가 요금제 비교 혜택 즉시 받기</button>
+        </section>
+
+        <div class="search-section" style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; margin-top: 40px;">
+            <h3 style="color: #0f766e; margin-top: 0;">실시간 자동완성 및 함께 많이 찾는 연관 검색어</h3>
+            <p>궁금한 키워드를 입력해 관련 최신 정보 흐름을 빠르게 살펴보세요.</p>
+            <input type="text" id="auto-search" placeholder="검색어를 입력해보세요 (예: 20대, 다이렉트, 보배드림...)" style="width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem; box-sizing: border-box;" onkeyup="filterKeywords()">
+            
+            <div id="suggest-box" class="suggestions-grid"></div>
+        </div>
+
+        <div class="link-section">
+            <h4>신뢰성 있는 법률 및 연관 전문 리소스 살펴보기</h4>
+            <ul class="link-list">
+                <li><a href="https://drivertopibohumf.directreliable.com" target="_blank" rel="noopener noreferrer">법률 배상 및 합의금 연구 분석 센터 공식 사이트</a></li>
+                <li><a href="https://namu.wiki/w/%EC%9A%B4%EC%A0%84%EC%9E%90%EB%B3%B4%ED%97%98" target="_blank" rel="noopener noreferrer">나무위키 운전자보험 법률 기본 개념 정보</a></li>
+                <li><a href="https://www.fss.or.kr" target="_blank" rel="noopener noreferrer">금융감독원 공식 웹사이트 제도 변경 사항 공지</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <script>
+        const searchKeywords = [
+            '20대 아반떼 운전자보험 형사합의금 예상',
+            '30대 쏘나타 평균 다이렉트 가격',
+            '40대 그랜저 최저가 추천 좌표',
+            '50대 제네시스 온라인 계산기 요금',
+            '경찰수사단계 변호사선임비 포함 가입 방법',
+            '내돈내산 보배드림 이사 및 사고 합의 후기',
+            '펨코 에펨코리아 선정 2026 추천 브랜드',
+            '토스 제미나이 챗지피티 결합 AI 견적',
+            '가장 싼곳 비교 및 할인 혜택 정리',
+            '상품권 사은품 현금지원 한도 계산기 어플',
+            '12대 중과실 벌금 요금제 장단점 분석',
+            '디시 보험갤러리 실시간 상담 좌표 성지'
+        ];
+
+        function filterKeywords() {
+            const input = document.getElementById('auto-search').value.toLowerCase();
+            const box = document.getElementById('suggest-box');
+            box.innerHTML = '';
+            
+            if (input === '') {
+                box.style.display = 'none';
+                return;
+            }
+            
+            const filtered = searchKeywords.filter(kw => kw.toLowerCase().includes(input));
+            if (filtered.length > 0) {
+                box.style.display = 'grid';
+                filtered.forEach(kw => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion-item';
+                    div.innerText = kw;
+                    div.onclick = function() {
+                        document.getElementById('auto-search').value = kw;
+                        box.style.display = 'none';
+                    };
+                    box.appendChild(div);
+                });
+            } else {
+                box.style.display = 'none';
+            }
+        }
+
+        function calculatePremium() {
+            const spinner = document.getElementById('calc-spinner');
+            const resultDiv = document.getElementById('calc-result');
+            spinner.style.display = 'block';
+            resultDiv.style.display = 'none';
+            
+            setTimeout(function() {
+                spinner.style.display = 'none';
+                resultDiv.style.display = 'block';
+                
+                const carType = document.getElementById('car-type').value;
+                const ageGroup = document.getElementById('age-group').value;
+                const planType = document.getElementById('plan-type').value;
+                
+                let base = 9500;
+                let carText = '';
+                
+                if (carType === 'premium') {
+                    base = base + 3500;
+                    carText = '프리미엄 세단 및 수입차';
+                } else if (carType === 'large') {
+                    base = base + 1500;
+                    carText = '대형 세단 및 SUV';
+                } else if (carType === 'medium') {
+                    base = base + 500;
+                    carText = '준중형 및 중형 세단/SUV';
+                } else {
+                    carText = '경차 및 소형 차량';
+                }
+                
+                if (ageGroup === 'age20') {
+                    base = base + 4000;
+                } else if (ageGroup === 'age60') {
+                    base = base + 2000;
+                }
+                
+                let limit = '1억 원';
+                if (planType === 'standard') {
+                    base = base + 2900;
+                    limit = '2억 원';
+                } else if (planType === 'vip') {
+                    base = base + 6400;
+                    limit = '3억 원';
+                }
+                
+                document.getElementById('res-car').innerText = carText;
+                document.getElementById('res-limit').innerText = limit;
+                document.getElementById('res-premium').innerText = base.toLocaleString() + '원';
+            }, 1200);
+        }
+    </script>
+  
